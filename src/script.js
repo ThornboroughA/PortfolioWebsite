@@ -3,6 +3,8 @@ import './style.css'
 import * as THREE from 'three';
 import {OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
+import {GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+
 import { Scene } from 'three';
 
 const scene = new THREE.Scene();
@@ -12,6 +14,7 @@ const renderer = new THREE.WebGLRenderer({
     canvas: document.querySelector('canvas.webgl')
 
 })
+
 
 renderer.setPixelRatio(window.devicePixelRatio);
 renderer.setSize(window.innerWidth, window.innerHeight);
@@ -27,6 +30,17 @@ scene.add(torus);
 
 torus.position.z = -28;
 
+//seona
+const loader = new GLTFLoader();
+loader.load('Seona.gltf', function (gltf) {
+scene.add(gltf.scene)
+}, 
+undefined, function (error) {
+    console.error(error);
+}
+);
+
+
 //stars
 function AddStar() {
     const geometry = new THREE.SphereGeometry(0.25, 24, 24);
@@ -39,6 +53,11 @@ function AddStar() {
     scene.add(star);
 }
 Array(200).fill().forEach(AddStar);
+
+//bg texture
+const spaceTexture = new THREE.TextureLoader().load('space.jpg');
+scene.background = spaceTexture;
+
 
 //lights
 const pointLight = new THREE.PointLight(0xffffff);
