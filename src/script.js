@@ -23,7 +23,7 @@ renderer.render(scene, camera);
 
 //mesh
 const geometry = new THREE.TorusGeometry(10, 3, 16, 100);
-const material = new THREE.MeshStandardMaterial ({color: 0xFF6347});
+const material = new THREE.MeshStandardMaterial ({color: 0x0C7373});
 const torus = new THREE.Mesh(geometry, material);
 
 scene.add(torus);
@@ -68,13 +68,17 @@ const ambientLight = new THREE.AmbientLight(0xffffff);
 scene.add(pointLight, ambientLight);
 
 //debugging
-/*const lightHelper = new THREE.PointLightHelper(pointLight);
+const lightHelper = new THREE.PointLightHelper(pointLight);
 const gridHelper = new THREE.GridHelper(200, 50);
-scene.add(lightHelper, gridHelper);*/
+scene.add(lightHelper, gridHelper);
 
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enablePan = false;
-
+controls.maxPolarAngle = (Math.PI / 5) * 2;
+controls.enableDamping = true;
+controls.dampingFactor = 0.05;
+controls.maxDistance = 50;
+controls.minDistance = 2;
 
 //resize
 //TODO: needs a separate function for phones
