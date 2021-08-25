@@ -42,7 +42,20 @@ gltfLoader.load(
         const action = mixer.clipAction(gltf.animations[1]);
         action.play();
         gltf.scene.scale.set(0.1, 0.1, 0.1);
+        gltf.scene.position.set(10, 0, 0);
         scene.add(gltf.scene);
+        
+    }
+
+)
+gltfLoader.load(
+    'models/seona.gltf',
+
+    (gltf) => {
+        gltf.scene.scale.set(8, 8, 8);
+        gltf.scene.position.set(-10, 0, 0);
+        scene.add(gltf.scene);
+        
     }
 
 )
