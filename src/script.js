@@ -2,7 +2,6 @@ import './style.css'
 
 import * as THREE from 'three';
 import {OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
-
 import {GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
 import { Scene } from 'three';
@@ -22,23 +21,31 @@ camera.position.setZ(30);
 renderer.render(scene, camera);
 
 //mesh
-const geometry = new THREE.TorusGeometry(10, 3, 16, 100);
+/*const geometry = new THREE.TorusGeometry(10, 3, 16, 100);
 const material = new THREE.MeshStandardMaterial ({color: 0x0C7373});
 const torus = new THREE.Mesh(geometry, material);
 
 scene.add(torus);
 
-torus.position.z = -28;
+torus.position.z = -28;*/
 
-//seona
-const loader = new GLTFLoader();
-loader.load('Seona.gltf', function (gltf) {
-scene.add(gltf.scene)
-}, 
-undefined, function (error) {
-    console.error(error);
-}
-);
+//gltf 1
+const gltfLoader = new GLTFLoader();
+let mixer = null;
+
+gltfLoader.load(
+    'models/Fox/glTF/Fox.gltf',
+
+    (gltf) =>
+    {   
+        mixer = new THREE.AnimationMixer(gltf.scene);
+        const action = mixer.clipAction(gltf.animations[1]);
+        action.play();
+        gltf.scene.scale.set(0.1, 0.1, 0.1);
+        scene.add(gltf.scene);
+    }
+
+)
 
 
 //stars
@@ -90,8 +97,22 @@ function onWindowResize() {
     renderer.setSize( window.innerWidth, window.innerHeight)
 }
 
+
+const clock = new THREE.Clock();
+let previousTime = 0;
+
 //update
 function animate() {
+    const elapsedTime = clock.getElapsedTime();
+    const deltaTime = elapsedTime - previousTime;
+    previousTime = elapsedTime;
+
+    //update animation mixer
+    if (mixer !== null) {
+        mixer.update(deltaTime);
+    }
+
+
     requestAnimationFrame(animate);
     controls.update();
     renderer.render(scene, camera);
