@@ -4,7 +4,7 @@ import * as THREE from 'three';
 import {OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import {GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
-import { Scene } from 'three';
+import { DoubleSide, Scene } from 'three';
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
@@ -14,9 +14,14 @@ const renderer = new THREE.WebGLRenderer({
 
 })
 
+//bg texture
+const spaceTexture = new THREE.TextureLoader().load('space.jpg');
+scene.background = spaceTexture;
+
 
 renderer.setPixelRatio(window.devicePixelRatio);
 renderer.setSize(window.innerWidth, window.innerHeight);
+
 camera.position.setZ(30);
 renderer.render(scene, camera);
 
@@ -29,8 +34,23 @@ scene.add(torus);
 
 torus.position.z = -28;*/
 
-//gltf 1
+
+//image plane
+const ppkTexture = new THREE.TextureLoader().load('dabin/DabinXander.png');
+
+const planeGeometry = new THREE.PlaneGeometry(25, 25, 1, 1);
+const planeMaterial = new THREE.MeshBasicMaterial({ map: ppkTexture, transparent: true, side: DoubleSide});
+const plane = new THREE.Mesh(planeGeometry, planeMaterial);
+
+scene.add(plane);
+
+
+
+
+
 const gltfLoader = new GLTFLoader();
+
+/*
 let mixer = null;
 
 gltfLoader.load(
@@ -54,14 +74,31 @@ gltfLoader.load(
     (gltf) => {
         gltf.scene.scale.set(8, 8, 8);
         gltf.scene.position.set(-10, 0, 0);
+        
         scene.add(gltf.scene);
         
     }
 
+)*/
+
+function AddHeart() {
+gltfLoader.load(
+    'dabin/Heart.glb',
+    (gltf) => {
+        gltf.scene.scale.set(1.5,1.5,1.5);
+        
+        const [x, y, z] = Array(3).fill().map(() => THREE.MathUtils.randFloatSpread(100));
+        gltf.scene.position.set(x, y, z);
+        scene.add(gltf.scene);
+    }
 )
+}
+
+Array(50).fill().forEach(AddHeart);
 
 
 //stars
+/*
 function AddStar() {
     const geometry = new THREE.SphereGeometry(0.25, 24, 24);
     const material = new THREE.MeshBasicMaterial({color: 0xffffff});
@@ -73,10 +110,8 @@ function AddStar() {
     scene.add(star);
 }
 Array(200).fill().forEach(AddStar);
+*/
 
-//bg texture
-const spaceTexture = new THREE.TextureLoader().load('space.jpg');
-scene.background = spaceTexture;
 
 
 //lights
@@ -84,13 +119,16 @@ const pointLight = new THREE.PointLight(0xffffff);
 pointLight.position.set(5,5,5);
 
 const ambientLight = new THREE.AmbientLight(0xffffff);
+ambientLight.intensity = 5;
 
 scene.add(pointLight, ambientLight);
 
 //debugging
+/*
 const lightHelper = new THREE.PointLightHelper(pointLight);
 const gridHelper = new THREE.GridHelper(200, 50);
 scene.add(lightHelper, gridHelper);
+*/
 
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enablePan = false;
@@ -120,10 +158,11 @@ function animate() {
     const deltaTime = elapsedTime - previousTime;
     previousTime = elapsedTime;
 
+    /*
     //update animation mixer
     if (mixer !== null) {
         mixer.update(deltaTime);
-    }
+    }*/
 
 
     requestAnimationFrame(animate);
