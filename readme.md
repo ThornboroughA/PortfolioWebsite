@@ -3,4 +3,4 @@
  Made with three.js in JavaScript (3d for web, basically).
  Here's the official website for examples of how it works: https://threejs.org/
 
- ![Example of the website](media/websiteexample.mp4)
+ ![Example of the website](media/websitegif.gif)
