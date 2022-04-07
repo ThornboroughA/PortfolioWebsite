@@ -1,9 +1,221 @@
-body {
+
+*
+{
     margin: 0;
-background: rgb(0, 0, 0);
+    padding: 0;
+    
 }
-canvas {
-    display: block;
+
+html,
+body
+{
+    background: #000000;
+    color: #ffffff;
+    
+    font-family: 'Press Start 2P', cursive;
+    
 }
+p {
+    padding-top: 5px;
+}
+
+.webgl
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    outline: none;
+}
+
+.title {
+    margin: auto;
+    width: 100%;
+    max-width: 700px;
+    top: 20px;
+    padding: 5px;
+
+    display: flex;
+    justify-content: center;
+
+    z-index: 100;
+    font-size: 14px;
+    
+    color: #ffffff;
+    text-shadow:  1px 1px #ff0000, -1px -1px #00ff00;
+}
+.title h3 {
+    margin-top: 7px;
+}
+.title h3 a {
+    color:#000000;
+}
+.title h3 a:hover {
+    color:#ffffff;
+}
+#subpage {
+    margin-top: 20px;
+    justify-content:space-around;
+}
+.inactive a {
+    color:#000000;
+    text-shadow:  1px 1px #ffffff, -1px -1px #ffffff;
+}
+.inactive a:hover {
+    text-shadow:  1px 1px #ff0000, -1px -1px #00ff00;
+}
+.infocontainer {
+    position:relative;
+    margin: auto;
+    margin-top: 80px;
+    width: 98%;
+
+    display: flex;
+    flex-direction:column;
+    align-items:flex-start;
+}
+#title_container {
+    margin-top: 20px;
+}
+#title_container h3 {
+    padding-left: 30px;
+    padding-right: 3npm0px;
+}
+#stretch_container {
+    align-items: stretch;
+    flex-wrap: wrap;
+    justify-content:center;
+    vertical-align: top;
+    flex-direction: row;
+}
+.infobox { 
+    width: 50%;
+    max-width: 600px;
+    min-width: 400px;
+    margin-bottom: 15px;
+    margin-left: 15px;
+    padding: 10px;
+    
+    background-color: #9b9b9b98;
+    background-image: radial-gradient(#3b3b3b90 20%, transparent 20%),
+    radial-gradient(#3b3b3b90 20%, transparent 20%);
+    background-position: 0 0, 5px 5px;
+    background-size: 10px 10px;
+    
+    line-height:20px;
+
+    border-color: #000000;
+    border-style: none solid solid none;
+    box-shadow: 1px 1px #000000,
+    -1px -1px #0000ff, 2px 0px #ff0000, 0px 2px #00ff00;
+}
+.infobox p, .infobox ul {
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-bottom: 5px;
+    padding-top: 5px;
+
+    font-size: 13px;   
+}
+.infobox h3, .infobox h2 {
+    line-height: 30px;
+
+    padding-left: 5%;
+    padding-right: 5%;
+
+    padding-top: 5px;
+    padding-bottom: 10px;
+}
+.infobox h3 {
+    font-size: 20px;
+}
+.infobox h2 {
+    text-shadow: 3px 3px #000000;
+}
+.infobox img {
+    margin: 10px;
+
+    width: 96%;
+    max-width: 780px;
+
+    border-color: #000000;
+    border-style: solid none none solid;
+}
+.infobox a {
+    text-decoration: underline;
+}
+.infobox li {
+    padding-bottom: 12px;
+}
+.infobox .subbox {
+    width: 90%;
+    max-width: 720px;
+    margin: auto;
+
+    padding: 7px;
+
+    color:#c0c0c0;
+    
+    box-shadow: -3px -3px #000000;
+
+    background-color: #36363698;
+    
+    background-image: radial-gradient(#3b3b3b90 20%, transparent 20%),
+    radial-gradient(#3b3b3b90 20%, transparent 20%);
+    background-position: 0 0, 5px 5px;
+    background-size: 10px 10px;
+}
+.subbox img {
+    width: 95%;
+    
+}
+.floatingbox, .floatingbox a {
+    margin: 30px 50px 15px 50px;
+    text-align: center;
+    color: #c0c0c0;
+}
+.floatingbox a:hover {
+    color: #ffffff;
+}
+
+.point {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+.point .label {
+    position: absolute;
+    top: -20px;
+    height: 30px;
+    box-shadow: 1px 1px #000000, -1px -1px #00ff00, 2px 0px #ff0000, 0px 2px #0000ff;
+    padding: 10px;
+
+    background: #000000;
+    font-weight: 2;
+    font-size: 14px;
+    text-shadow:  1px 1px #000000, 2px 2px #ff0000, -1px -1px #00ff00;
+    text-align: center;
+    line-height: 30px;
+    
+}
+.point .label:hover {
+    background: #ffffff;
+    color: #000000;
+
+    border-color:#000000;
+    border-style: none solid solid none;
+}
+
+a {
+    text-decoration: none;
+    color: #ffffff
+}
+a:hover {
+   
+    color: #000000;
+}
+
+
+
+
 
 /*# sourceMappingURL=main.css.map*/
