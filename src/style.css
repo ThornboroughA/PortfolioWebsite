@@ -27,6 +27,17 @@ p {
     outline: none;
 }
 
+@media (max-width: 600px) {
+    #subpage {
+        flex-direction: column;
+        padding-left: 8%;
+    }
+    #snslinks {
+        flex-direction: column;
+        padding-left: 8%;
+    }
+}
+
 .title {
     margin: auto;
     width: 100%;
@@ -56,9 +67,22 @@ h1 {
 .title h3 a:hover {
     color:#ffffff;
 }
-#subpage {
-    margin-top: 20px;
+#subpage, #snslinks {
+    margin-top: 10px;
     justify-content:space-around;
+}
+#subpage h1, #snslinks h3 {
+    margin-bottom: 5px;
+}
+#snslinks {
+    position: absolute;
+    display: flex;
+    margin: auto;
+    width: 100%;
+    top: 80%;
+    text-shadow:  1px 1px #ff0000, -1px -1px #00ff00;
+
+    font-size: 12px;
 }
 .inactive a {
     color:#000000;
@@ -70,12 +94,14 @@ h1 {
 .infocontainer {
     position:relative;
     margin: auto;
-    margin-top: 80px;
+    margin-top: 30px;
     width: 98%;
 
     display: flex;
     flex-direction:column;
     align-items:flex-start;
+
+    
 }
 #title_container {
     margin-top: 20px;
@@ -170,7 +196,6 @@ h1 {
 }
 .subbox img {
     width: 95%;
-    
 }
 .floatingbox, .floatingbox a {
     margin: 30px 50px 15px 50px;
