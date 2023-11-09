@@ -115,14 +115,14 @@ modelLoader.load(
         
         // Assign interactive objects
         objSocialMedia = palaceModel.children[0]
-        bjSocialMedia.name = 'objSocialMedia';
+        objSocialMedia.name = 'objSocialMedia';
         objGames = palaceModel.children[1]
         objGames.name = 'objGames';
         objContact = palaceModel.children[2]
         objContact.name = 'objContact';
         objModeling = palaceModel.children[3]
         objModeling.name = 'objModeling';
-         
+
         objectsToIntersect = [objSocialMedia, objModeling, objGames]
 
         objectsToIntersect.forEach(obj => {
@@ -138,8 +138,8 @@ modelLoader.load(
 // URL click functionality
 const objectURLs = {
     objSocialMedia: '/about.html',
-    objModeling: 'https://www.behance.net/torneberge',
-    objGames: '/games.html'
+    objModeling: '/games.html',
+    objGames: 'https://www.behance.net/torneberge'
 }
 
 /**
@@ -335,6 +335,7 @@ function RayCaster() {
     if (intersects.length) {
         if (!activeIntersect) {
             // Mouse enter
+            
         }
         activeIntersect = intersects[0]
 
