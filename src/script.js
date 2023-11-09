@@ -32,12 +32,7 @@ const canvas = document.querySelector('canvas.webgl')
 // Scene
 const scene = new THREE.Scene()
 
-// URL click functionality
-const objectURLs = {
-    objSocialMedia: '/about.html',
-    objModeling: 'https://www.behance.net/torneberge',
-    objGames: '/games.html'
-}
+
 
 /**
  * HTML Text Points
@@ -120,10 +115,14 @@ modelLoader.load(
         
         // Assign interactive objects
         objSocialMedia = palaceModel.children[0]
+        bjSocialMedia.name = 'objSocialMedia';
         objGames = palaceModel.children[1]
+        objGames.name = 'objGames';
         objContact = palaceModel.children[2]
+        objContact.name = 'objContact';
         objModeling = palaceModel.children[3]
-        
+        objModeling.name = 'objModeling';
+         
         objectsToIntersect = [objSocialMedia, objModeling, objGames]
 
         objectsToIntersect.forEach(obj => {
@@ -136,7 +135,12 @@ modelLoader.load(
         
     }
 )
-
+// URL click functionality
+const objectURLs = {
+    objSocialMedia: '/about.html',
+    objModeling: 'https://www.behance.net/torneberge',
+    objGames: '/games.html'
+}
 
 /**
  * Lights
