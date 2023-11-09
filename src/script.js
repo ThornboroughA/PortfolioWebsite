@@ -67,14 +67,17 @@ const material = new THREE.MeshToonMaterial({
 })
 
 // Particles
-const particlesCount = 150
+const particlesCount = 130;
+
+// function for generating location
+const generateRandomExclusive = (min, max, range) => {
+    let ranNum = (Math.random() - 0.5) * range;
+    if (ranNum < max && ranNum > min) return -4;
+    return ranNum;
+};
+
 const particlesPositions = new Float32Array(particlesCount * 3)
 for (let i = 0; i < particlesCount; i++) {
-    const generateRandomExclusive = (min, max, range) => {
-        let ranNum = (Math.random() - 0.5) * range
-        if (ranNum < max && ranNum > min) return -4
-        return ranNum
-    }
 
     let ranX = generateRandomExclusive(-0.2, 0.2, 20)
     let ranY = generateRandomExclusive(-0.2, 3, 20)
@@ -142,7 +145,7 @@ const sizes = {
     height: window.innerHeight
 }
 
-window.addEventListener('resize', () =>
+window.addEventListener('resize', throttle (() =>
 {  
     // Update sizes
     sizes.width = window.innerWidth
@@ -155,20 +158,33 @@ window.addEventListener('resize', () =>
     // Update renderer
     renderer.setSize(sizes.width, sizes.height)
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
-})
+}))
 
 /**
  * Cursor
  */
 const cursor = new THREE.Vector2(0, 1)
 
-window.addEventListener('mousemove', (event) =>
+window.addEventListener('mousemove', throttle((event) =>
 {
     const maxWidth = event.clientX / sizes.width * 2 - 1
 
     cursor.x = maxWidth
     cursor.y = - (event.clientY / sizes.height) * 2 + 1
-})
+},100))
+
+function throttle(callback, limit) {
+    let waiting = false; 
+    return function () {
+        if (!waiting) {
+            callback.apply(this, arguments);
+            waiting = true;
+            setTimeout(function () {
+                waiting = false;
+            }, limit);
+        }
+    }
+}
 
 /**
  * Camera
