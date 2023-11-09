@@ -32,6 +32,13 @@ const canvas = document.querySelector('canvas.webgl')
 // Scene
 const scene = new THREE.Scene()
 
+// URL click functionality
+const objectURLs = {
+    objSocialMedia: '/about.html',
+    objModeling: 'https://www.behance.net/torneberge',
+    objGames: '/games.html'
+}
+
 /**
  * HTML Text Points
  */
@@ -122,6 +129,7 @@ modelLoader.load(
         objectsToIntersect.forEach(obj => {
             obj.originalHeight = obj.position.y
             obj.isActive = false
+            obj.url = objectURLs[obj.name]
         })
 
         originalY = palaceModel.rotation.y 
@@ -164,6 +172,20 @@ window.addEventListener('resize', throttle (() =>
  * Cursor
  */
 const cursor = new THREE.Vector2(0, 1)
+
+window.addEventListener('click', (event) => {
+    // Update the picking ray with the camera and mouse position
+    raycaster.setFromCamera(cursor, camera);
+    // Calculate objects intersecting the picking ray
+    const intersects = raycaster.intersectObjects(objectsToIntersect);
+
+    if (intersects.length > 0) {
+        const intersect = intersects[0]; // Get the first intersected object
+        if (intersect.object.url) {
+            window.location.href = intersect.object.url; // Redirect to the URL
+        }
+    }
+});
 
 window.addEventListener('mousemove', throttle((event) =>
 {
