@@ -177,6 +177,7 @@ window.addEventListener('resize', throttle (() =>
  */
 const cursor = new THREE.Vector2(0, 1)
 
+/**
 window.addEventListener('click', (event) => {
     // Update the picking ray with the camera and mouse position
     raycaster.setFromCamera(cursor, camera);
@@ -189,7 +190,7 @@ window.addEventListener('click', (event) => {
             window.location.href = intersect.object.url; // Redirect to the URL
         }
     }
-});
+}); */
 
 window.addEventListener('mousemove', throttle((event) =>
 {
